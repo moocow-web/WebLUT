@@ -1,0 +1,109 @@
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: sans-serif;
+            margin-top: 50px;
+        }
+        #shadowsColorCanvas {
+            position: absolute;
+            bottom: 130px;
+            left: 20px;
+            border-radius: 50%;
+            cursor: crosshair;
+            border: 2px solid #333;
+        }
+        #shadowsColorDisplay {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            margin-top: 20px;
+            width: 50px;
+            height: 25px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        #shadowsColorText {
+            white-space: pre-line;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #highlightsColorCanvas {
+            position: absolute;
+            bottom: 130px;
+            left: 180px;
+            border-radius: 50%;
+            cursor: crosshair;
+            border: 2px solid #333;
+        }
+        #highlightsColorDisplay {
+            position: absolute;
+            bottom: 80px;
+            left: 180px;
+            margin-top: 20px;
+            width: 50px;
+            height: 25px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        #highlightsColorText {
+            white-space: pre-line;
+            position: absolute;
+            bottom: 20px;
+            left: 180px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .shadowManualInputs{
+            position: absolute;
+            gap: 5px;
+            bottom: 300px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100px;
+        }
+         .highlightManualInputs {
+            position: absolute;
+            gap: 5px;
+            bottom:300px;
+            left: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100px;
+        }
+        .shadowButtons {
+            position: absolute;
+            bottom: 300px;
+            left: 130px;
+            width: 50px;
+        }
+        .highlightButtons {
+            position: absolute;
+            bottom: 300px;
+            left: 290px;
+            width: 50px;
+        }
+        .sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            bottom: 400px;
+            left: 20px;
+            position: absolute;
+ 
+        }
+        .sliders p {
+         margin: 0;
+        }
+        .image-input {
+            position: absolute;
+            bottom: 400px;
+            left: 180px;
+        }
+

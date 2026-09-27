@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sliders">
+
+    <input id="slider" type="range" name="LUT intensity" min="0" max="100" value="0" step="1">
+    <p>LUT intensity</p>
+
+    <input id="slider" type="range" name="Brightness" min="-5" max="5" value="0" step="1">
+    <p>Brightness</p>
+
+    <input id="slider" type="range" name="Contrast" min="-100" max="100" value="0" step="1">
+    <p>Contrast</p>
+
+    <input id="slider" type="range" name="Saturation" min="0" max="200" value="0" step="1">
+    <p>Saturation</p>
+
+    <input id="slider" type="range" name="Temperature" min="2000" max="11000" value="0" step="1">
+    <p>Temperature</p>
+
+    <input id="slider" type="range" name="Tint" min="-100" max="100" value="0" step="1">
+    <p>Tint</p>
+
+    <input id="slider" type="range" name="Shadows" min="-100" max="100" value="0" step="1">
+    <p>Shadows</p>
+
+    <input id="slider" type="range" name="Highlights" min="-100" max="0" value="0" step="1">
+    <p>Highlights</p>
+
+    </div>
+
+    <canvas id="shadowsColorCanvas" width="150" height="150"></canvas>
+    <div id="shadowsColorDisplay"></div>
+    <p id="shadowsColorText">Shadows</p>
+
+    <canvas id="highlightsColorCanvas" width="150" height="150"></canvas>
+    <div id="highlightsColorDisplay"></div>
+    <p id="highlightsColorText">Highlights</p>
+
+<div class="shadowManualInputs">
+    <input type="number" id="shadowR" placeholder="Shadow R">
+    <input type="number" id="shadowG" placeholder="Shadow G">
+    <input type="number" id="shadowB" placeholder="Shadow B">
+</div>
+
+<div class="highlightManualInputs">
+    <input type="number" id="highlightR" placeholder="Highlight R">
+    <input type="number" id="highlightG" placeholder="Highlight G">
+    <input type="number" id="highlightB" placeholder="Highlight B">
+</div>
+
+<div class="shadowButtons">
+    <button id="shadowSet" onclick="shadowSet()">Set</button>
+</div>
+
+<div class="highlightButtons">
+    <button id="highlightSet" onclick="highlightSet()">Set</button>
+</div>
+<input class="image-input" type="file" id="imageInput" accept="image/*" multiple>
+
+
+
+<div id="previewContainer" class="preview-grid"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+  

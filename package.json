@@ -1,0 +1,25 @@
+{
+  "name": "weblut",
+  "version": "1.0.0",
+  "description": "Online, batch photo editor",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moocow-web/WebLUT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/moocow-web/WebLUT/issues"
+  },
+  "homepage": "https://github.com/moocow-web/WebLUT#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
