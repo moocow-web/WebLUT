@@ -9,28 +9,28 @@
 <body>
     <div class="sliders">
 
-    <input id="slider" type="range" name="LUT intensity" min="0" max="100" value="0" step="1">
+    <input id="lutIntensity" type="range" name="LUT intensity" min="0" max="100" value="0" step="1">
     <p>LUT intensity</p>
 
-    <input id="slider" type="range" name="Brightness" min="-5" max="5" value="0" step="1">
+    <input id="brightness" type="range" name="Brightness" min="-5" max="5" value="0" step="1">
     <p>Brightness</p>
 
-    <input id="slider" type="range" name="Contrast" min="-100" max="100" value="0" step="1">
+    <input id="contrast" type="range" name="Contrast" min="-100" max="100" value="0" step="1">
     <p>Contrast</p>
 
-    <input id="slider" type="range" name="Saturation" min="0" max="200" value="0" step="1">
+    <input id="saturation" type="range" name="Saturation" min="0" max="200" value="100" step="1">
     <p>Saturation</p>
 
-    <input id="slider" type="range" name="Temperature" min="2000" max="11000" value="0" step="1">
+    <input id="temperature" type="range" name="Temperature" min="2000" max="11000" value="6500" step="1">
     <p>Temperature</p>
 
-    <input id="slider" type="range" name="Tint" min="-100" max="100" value="0" step="1">
+    <input id="tint" type="range" name="Tint" min="-100" max="100" value="0" step="1">
     <p>Tint</p>
 
-    <input id="slider" type="range" name="Shadows" min="-100" max="100" value="0" step="1">
+    <input id="shadows" type="range" name="Shadows" min="-100" max="100" value="0" step="1">
     <p>Shadows</p>
 
-    <input id="slider" type="range" name="Highlights" min="-100" max="0" value="0" step="1">
+    <input id="highlights" type="range" name="Highlights" min="-100" max="0" value="0" step="1">
     <p>Highlights</p>
 
     </div>
@@ -62,13 +62,20 @@
 <div class="highlightButtons">
     <button id="highlightSet" onclick="highlightSet()">Set</button>
 </div>
-<input class="image-input" type="file" id="imageInput" accept="image/*" multiple>
 
+<div class="image-input">
+    <input type="file" id="imageInput" accept="image/*" multiple>
+    <button id="processAll" onclick="processAll()">Process+ download all</button>
+    <button id="downloadLut" onclick="downloadLUT()">Download .cube LUT</button>
+    <button id="applyLut" onclick="processOne()">Apply LUT</button>
+</div>
 
-
-<div id="previewContainer" class="preview-grid"></div>
+<div id="previewContainer"></div>
 
     <script src="scripts.js"></script>
+    <script src="LUTgen.js"></script>
+    <script src="batchWorker.js"></script>
+    
 </body>
 </html>
   

@@ -1,0 +1,10 @@
+{
+  "forwardPorts": [5500],
+  "portsAttributes": {
+    "5500": {
+      "label": "WebLUT",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
+    }
+  }
+}
