@@ -1,11 +1,46 @@
+coming to a browser near you soon...
 # WebLUT
-Online, batch photo editor.
 
-Run `npm start` to launch the editor and `npm run build` to create a production build in `dist/`.
+Online, upload-free LUT batch editor
 
-RAW decoding uses threaded WebAssembly and requires cross-origin isolation. The Vite development and preview servers set the required headers. For static hosting, deploy the `dist/` directory and configure these response headers on every page:
 
-- `Cross-Origin-Opener-Policy: same-origin`
-- `Cross-Origin-Embedder-Policy: require-corp`
+## Description
+WebLUT is a simple, easy-to-use photo editor. It runs fully locally, in your own browser. It creates 33pt .CUBE LUTs, and batch edits your photos. It is fairly potato freindly, and can probably run on a chromebook. Credit to ANIME for the animation library and @pleasedonotdisturb on codepen for the bg. 
+### Screenshots
+![alt text](image.png)
 
-The `public/_headers` file provides this configuration for hosts that support the `_headers` convention, such as Netlify and Cloudflare Pages.
+## Getting Started
+
+* Head to https://moocow-web.github.io/WebLUT/
+* Press "Choose Files", and select your images
+* Then click "Apply LUT". This will update your image preview
+
+
+### Dependencies
+
+* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
+* ex. Windows 10
+
+### Installing
+
+* How/where to download your program
+* Any modifications needed to be made to files/folders
+
+### Executing program
+
+* How to run the program
+* Step-by-step bullets
+```
+code blocks for commands
+```
+
+## Help
+
+Any advise for common problems or issues.
+```
+command to run if program contains helper info
+```
+
+## License
+
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details

@@ -4,6 +4,7 @@ const isolationHeaders = {
 };
 
 module.exports = {
+    base: '/WebLUT/',
     server: {
         headers: isolationHeaders
     },
