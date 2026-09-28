@@ -64,17 +64,36 @@
 </div>
 
 <div class="image-input">
-    <input type="file" id="imageInput" accept="image/*" multiple>
+    <input type="file" id="imageInput" accept="image/*,.3fr,.ari,.arw,.bay,.cap,.cr2,.cr3,.dcs,.dcr,.dng,.drf,.eip,.erf,.fff,.gpr,.iiq,.k25,.kdc,.mdc,.mef,.mos,.mrw,.nef,.nrw,.obm,.orf,.pef,.ptx,.pxn,.r3d,.raf,.raw,.rw2,.rwl,.sr2,.srf,.srw,.x3f" multiple>
     <button id="processAll" onclick="processAll()">Process+ download all</button>
     <button id="downloadLut" onclick="downloadLUT()">Download .cube LUT</button>
     <button id="applyLut" onclick="processOne()">Apply LUT</button>
 </div>
 
-<div id="previewContainer"></div>
+<div class="preview-container" id="previewContainer"></div>
 
-    <script src="scripts.js"></script>
-    <script src="LUTgen.js"></script>
-    <script src="batchWorker.js"></script>
+    <script type="module" src="scripts.js"></script>
+    <script type="module" src="LUTgen.js"></script>
+    <script type="module" src="batchWorker.js"></script>
+    <script type="module" src="rawDecoder.js"></script>
+    
+<div class="square"></div>
+<div class="square"></div>
+<div class="square"></div>
+<div class="square"></div>
+<div class="square"></div>
+
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+
+<div class="triangle"></div>
+<div class="triangle"></div>
+<div class="triangle"></div>
+<div class="triangle"></div>
+<div class="triangle"></div>
     
 </body>
 </html>

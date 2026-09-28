@@ -5,6 +5,12 @@
             font-family: sans-serif;
             margin-top: 50px;
         }
+
+        p {
+            font-family: 'Courier New', monospace;
+            color: #315cf8;
+            font-size: 12px;
+        }
         #shadowsColorCanvas {
             position: absolute;
             bottom: 130px;
@@ -28,7 +34,7 @@
             position: absolute;
             bottom: 20px;
             left: 20px;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
         }
         #highlightsColorCanvas {
@@ -54,7 +60,7 @@
             position: absolute;
             bottom: 20px;
             left: 180px;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
         }
         .shadowManualInputs{
@@ -110,4 +116,64 @@
             left: 180px;
             width: 200px;
         }
+        .preview-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 75vw;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .preview-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        * {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #222222;
+	overflow: hidden;
+}
+
+.square {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+	height: 50px;
+	background: linear-gradient(#303030, #757575);
+	z-index: -1;
+}
+
+.circle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+	height: 50px;
+	background: #3300dd;
+	border-radius: 50%;
+    z-index: -2;
+}
+
+.triangle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+	height: 50px;
+	background: #f5f5f5;
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	-webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: -3;
+}
 

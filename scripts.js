@@ -1,3 +1,5 @@
+import anime from 'animejs/lib/anime.es.js';
+
 function initializeColorWheel(canvasId, colorDisplayId, colorTextId, label) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
@@ -67,7 +69,31 @@ function highlightSet() {
     highlightsColorDisplay.style.backgroundColor = rgbColor;
     highlightsColorText.textContent = `${rgbColor}\nHighlights`;
 }
+function randomValues() {
+  anime({
+    targets: '.square, .circle, .triangle',
+    translateX: function() {
+      return anime.random(-1000, 1000);
+    },
+		translateY: function() {
+      return anime.random(-500, 500);
+    },
+		rotate: function() {
+			return anime.random(0, 360);
+		},
+		scale: function() {
+			return anime.random(.2, 2);
+		},
+    duration: 3000,
+		easing: 'cubicBezier(0.1,0.7,0.9,0.5)',
+    complete: randomValues,
+	});
+}
 
+randomValues();
 
 initializeColorWheel('shadowsColorCanvas', 'shadowsColorDisplay', 'shadowsColorText', 'Shadows');
 initializeColorWheel('highlightsColorCanvas', 'highlightsColorDisplay', 'highlightsColorText', 'Highlights');
+
+window.shadowSet = shadowSet;
+window.highlightSet = highlightSet;

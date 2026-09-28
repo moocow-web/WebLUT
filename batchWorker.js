@@ -1,40 +1,87 @@
-const JSZIP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
-const PIXELS_PER_CHUNK = 50000;
-let jsZipPromise;
+import JSZip from 'jszip';
 
-function loadJSZip() {
-    if (window.JSZip) {
-        return Promise.resolve(window.JSZip);
-    }
-    if (!jsZipPromise) {
-        jsZipPromise = new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = JSZIP_URL;
-            script.onload = () => resolve(window.JSZip);
-            script.onerror = () => {
-                jsZipPromise = null;
-                reject(new Error('Could not load the ZIP library.'));
-            };
-            document.head.appendChild(script);
-        });
-    }
-    return jsZipPromise;
+const PIXELS_PER_CHUNK = 50000;
+const RAW_EXTENSIONS = new Set([
+    '3fr', 'ari', 'arw', 'bay', 'cap', 'cr2', 'cr3', 'dcs', 'dcr', 'dng', 'drf',
+    'eip', 'erf', 'fff', 'gpr', 'iiq', 'k25', 'kdc', 'mdc', 'mef', 'mos', 'mrw',
+    'nef', 'nrw', 'obm', 'orf', 'pef', 'ptx', 'pxn', 'r3d', 'raf', 'raw', 'rw2',
+    'rwl', 'sr2', 'srf', 'srw', 'x3f'
+]);
+
+function getRawExtension(file) {
+    const extension = file.name.split('.').pop().toLowerCase();
+    return RAW_EXTENSIONS.has(extension) ? extension : null;
 }
 
-function processImage(file, colorTransform) {
-    return createImageBitmap(file).then(async image => {
+async function decodeRawImage(file) {
+    if (!window.LibRaw) {
+        throw new Error('The RAW image decoder is still loading. Please try again.');
+    }
+
+    const decoder = new window.LibRaw();
+    try {
+        await decoder.open(new Uint8Array(await file.arrayBuffer()), {
+            outputBps: 8,
+            outputColor: 1,
+            useCameraWb: true,
+            useCameraMatrix: 1
+        });
+        const decoded = await decoder.imageData();
+        if (!decoded || decoded.colors < 3) {
+            throw new Error(`Could not decode ${file.name} into RGB pixels.`);
+        }
+
+        const rgba = new Uint8ClampedArray(decoded.width * decoded.height * 4);
+        for (let source = 0, target = 0; source < decoded.data.length; source += decoded.colors, target += 4) {
+            rgba[target] = decoded.data[source];
+            rgba[target + 1] = decoded.data[source + 1];
+            rgba[target + 2] = decoded.data[source + 2];
+            rgba[target + 3] = decoded.colors > 3 ? decoded.data[source + 3] : 255;
+        }
+
+        return new ImageData(rgba, decoded.width, decoded.height);
+    } catch {
+        throw new Error(`Could not decode ${file.name}. This RAW file may use an unsupported format or compression.`);
+    } finally {
+        decoder.dispose();
+    }
+}
+
+async function processImage(file, colorTransform) {
+        let imageData;
+        const rawExtension = getRawExtension(file);
+        if (rawExtension) {
+            imageData = await decodeRawImage(file);
+        } else {
+            let image;
+            try {
+                image = await createImageBitmap(file);
+            } catch {
+                throw new Error(`Could not open ${file.name}. Select a supported image or camera RAW file.`);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const context = canvas.getContext('2d', { willReadFrequently: true });
+            if (!context) {
+                image.close();
+                throw new Error(`Could not process ${file.name}.`);
+            }
+
+            context.drawImage(image, 0, 0);
+            image.close();
+            imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        }
+
         const canvas = document.createElement('canvas');
-        canvas.width = image.width;
-        canvas.height = image.height;
+        canvas.width = imageData.width;
+        canvas.height = imageData.height;
         const context = canvas.getContext('2d', { willReadFrequently: true });
         if (!context) {
-            image.close();
             throw new Error(`Could not process ${file.name}.`);
         }
 
-        context.drawImage(image, 0, 0);
-        image.close();
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
 
         for (let start = 0; start < pixels.length; start += PIXELS_PER_CHUNK * 4) {
@@ -64,7 +111,6 @@ function processImage(file, colorTransform) {
                 }
             }, 'image/png');
         });
-    });
 }
 
 function getOutputLink() {
@@ -88,7 +134,7 @@ async function processOne() {
         alert('Please select an image.');
         return;
     }
-    if (typeof createSiteColorTransform !== 'function') {
+    if (typeof window.createSiteColorTransform !== 'function') {
         alert('The LUT controls are not available.');
         return;
     }
@@ -102,7 +148,7 @@ async function processOne() {
     }
 
     try {
-        const imageBlob = await processImage(file, createSiteColorTransform());
+        const imageBlob = await processImage(file, window.createSiteColorTransform());
         const objectUrl = URL.createObjectURL(imageBlob);
         const img = document.createElement('img');
         img.alt = `Processed ${file.name}`;
@@ -130,7 +176,7 @@ async function processAll() {
         alert('Please select at least one image.');
         return;
     }
-    if (typeof createSiteColorTransform !== 'function') {
+    if (typeof window.createSiteColorTransform !== 'function') {
         alert('The LUT controls are not available.');
         return;
     }
@@ -140,9 +186,8 @@ async function processAll() {
     }
 
     try {
-        const JSZip = await loadJSZip();
         const zip = new JSZip();
-        const colorTransform = createSiteColorTransform();
+        const colorTransform = window.createSiteColorTransform();
 
         for (const [index, file] of Array.from(fileInput.files).entries()) {
             const imageBlob = await processImage(file, colorTransform);
@@ -173,3 +218,8 @@ async function processAll() {
 function batchProcess() {
     return processAll();
 }
+
+
+window.processOne = processOne;
+window.processAll = processAll;
+window.batchProcess = batchProcess;

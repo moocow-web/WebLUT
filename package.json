@@ -5,7 +5,9 @@
   "main": "scripts.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --host=0.0.0.0 --port=5500 --no-browser"
+    "start": "vite --host 0.0.0.0 --port 5500",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,12 @@
   },
   "homepage": "https://github.com/moocow-web/WebLUT#readme",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "vite": "^8.3.1"
+  },
+  "dependencies": {
+    "animejs": "^3.2.2",
+    "jszip": "^3.10.2",
+    "libraw-wasm": "^1.6.0"
   }
 }

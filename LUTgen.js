@@ -113,3 +113,6 @@ function downloadLUT() {
   link.remove();
   URL.revokeObjectURL(url);
 }
+
+window.createSiteColorTransform = createSiteColorTransform;
+window.downloadLUT = downloadLUT;
