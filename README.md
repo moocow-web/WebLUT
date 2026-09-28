@@ -14,33 +14,28 @@ WebLUT is a simple, easy-to-use photo editor. It runs fully locally, in your own
 * Head to https://moocow-web.github.io/WebLUT/
 * Press "Choose Files", and select your images
 * Then click "Apply LUT". This will update your image preview
-
+* Adjust you settings, and click apply LUT to update the preview
+* To export LUT, press "Download .cube LUT" 
+* To export .zip of images, click "Process+ Download all"
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Modern browser
+* JS enabled
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+Site is live at https://moocow-web.github.io/WebLUT/
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+Site is live at https://moocow-web.github.io/WebLUT/
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+* If it fails to process your photo, this is likely because it is an unsupported format.
+* If any thing else goes wrong, try restarting your browser.
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+CC0 1.0 Universal Public Domain
